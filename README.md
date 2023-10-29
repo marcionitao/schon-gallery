@@ -7,5 +7,6 @@ A simple image gallery
 - Next
 - Tailwind CSS
 - Typescript
-- Zod
+- Zod (validate forms)
 - Pexels for photos/videos
+- Envalid (a small library for validating and accessing environment variables in Node.js programs)
