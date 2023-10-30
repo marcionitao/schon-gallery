@@ -19,7 +19,7 @@ export const PhotoSchema = z.object({
     large: z.string(),
   }),
   alt: z.string(),
-  blurredDataUrl: z.string(),
+  blurredDataUrl: z.string().optional(),
 })
 
 export const ImagesSchemaWithPhotos = BasicImageSchema.extend({
@@ -28,4 +28,4 @@ export const ImagesSchemaWithPhotos = BasicImageSchema.extend({
 
 // definindo type Photo, com base no schema "PhotoSchema"
 export type Photo = z.infer<typeof PhotoSchema>
-export type ImagesResult = z.infer<typeof ImagesSchemaWithPhotos>
+export type ImagesResults = z.infer<typeof ImagesSchemaWithPhotos>

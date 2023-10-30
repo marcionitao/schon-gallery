@@ -1,10 +1,10 @@
-import type { ImagesResult } from '@/models/Images'
+import type { ImagesResults } from '@/models/Images'
 import { ImagesSchemaWithPhotos } from '@/models/Images'
 import env from './env'
 
 export default async function fetchImages(
   url: string,
-): Promise<ImagesResult | undefined> {
+): Promise<ImagesResults | undefined> {
   try {
     const res = await fetch(url, {
       headers: {
@@ -14,9 +14,9 @@ export default async function fetchImages(
     if (!res.ok) {
       throw new Error('Fetch images error!\n')
     }
-    const imagesResults: ImagesResult = await res.json()
+    const imagesResults: ImagesResults = await res.json()
     // resultado vem em formato json
-    console.log(imagesResults)
+    // console.log(imagesResults)
     // Parse data com zod schema que contem os dados do meu formulário
     const parsedData = ImagesSchemaWithPhotos.parse(imagesResults)
 
