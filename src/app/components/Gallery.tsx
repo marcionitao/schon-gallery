@@ -2,6 +2,8 @@ import fetchImages from '@/lib/fetchImages'
 import type { ImagesResults } from '@/models/Images'
 import ImgContainer from './ImgContainer'
 import addBlurredDataUrls from '@/lib/getBase64'
+import getPrevNextPages from '@/lib/getPrevNextPages'
+import Footer from './Footer'
 
 type Props = {
   topic?: string | undefined
@@ -29,7 +31,9 @@ export default async function Gallery({ topic = 'curated', page }: Props) {
   if (!images || images.per_page === 0) {
     return <h2 className="m-4 text-2xl font-bold">No Images Found</h2>
   }
-  // calculate pagination
+
+  const { prevPage, nextPage } = getPrevNextPages(images)
+  const footerProps = { topic, page, prevPage, nextPage }
 
   const photosWithBlur = await addBlurredDataUrls(images)
   return (
@@ -39,7 +43,8 @@ export default async function Gallery({ topic = 'curated', page }: Props) {
           <ImgContainer key={photo.id} photo={photo} />
         ))}
       </section>
-      {/* Add Footer */}
+      {/* const footerProps = { topic, page, prevPage, nextPage } */}
+      <Footer {...footerProps} />
     </>
   )
 }
